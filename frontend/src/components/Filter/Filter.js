@@ -2,7 +2,9 @@ import './Filter.css'
 
 const Filter = () => {
   return (
-    <div>Filter</div>
+    <div className='app-block filter'>
+        <h2>Filters</h2>
+    </div>
   )
 }
 
