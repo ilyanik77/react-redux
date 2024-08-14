@@ -1,32 +1,45 @@
-
-import {useState} from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { v4 as uuid} from 'uuid'
+import { v4 as uuid } from 'uuid'
 import { addBook } from '../../redux/books/actionCreators'
+import booksData from '../../data/books.json'
 
 import './BookForm.css'
 
 const BookForm = () => {
-    const [title, setTitle] = useState('')
-    const [author, setAuthor] = useState('')
-    const dispatch = useDispatch()
+	const [title, setTitle] = useState('')
+	const [author, setAuthor] = useState('')
+	const dispatch = useDispatch()
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+	const handleSubmit = e => {
+		e.preventDefault()
 
-        if (title && author) {
-            const newBook = {
-                title, 
-                author,
-                id: uuid(),
-            }
+		if (title && author) {
+			const newBook = {
+				title,
+				author,
+				id: uuid(),
+				isFavorite: false,
+			}
 
-            dispatch(addBook(newBook))
-            setTitle('')
-            setAuthor('')
-        }
-        
-    }
+			dispatch(addBook(newBook))
+			setTitle('')
+			setAuthor('')
+		}
+	}
+
+	const handleAddRandomBook = () => {
+		const randomIndex = Math.floor(Math.random() * booksData.length)
+
+		const randomBook = booksData[randomIndex]
+		const randomBookWithId = {
+			...randomBook,
+			id: uuid(),
+			isFavorite: false,
+		}
+
+		dispatch(addBook(randomBookWithId))
+	}
 
 	return (
 		<div className='app-block book-form'>
@@ -50,7 +63,10 @@ const BookForm = () => {
 						onChange={e => setAuthor(e.target.value)}
 					/>
 				</div>
-                <button type='submit'>Add Book</button>
+				<button type='submit'>Add Book</button>
+				<button type='button' onClick={handleAddRandomBook}>
+					Add random
+				</button>
 			</form>
 		</div>
 	)
