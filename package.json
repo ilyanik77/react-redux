@@ -3,7 +3,6 @@
 	"version": "0.1.0",
 	"homepage": "https://ilyanik77.github.io/react-redux",
 	"dependencies": {
-		"gh-pages": "^6.1.1",
 		"save-dev": "^0.0.1-security"
 	},
     "scripts": {}
