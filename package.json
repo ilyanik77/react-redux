@@ -1,7 +1,6 @@
 {
 	"name": "react-redux",
 	"version": "0.1.0",
-	"homepage": "https://ilyanik77.github.io/react-redux",
 	"dependencies": {
 		"save-dev": "^0.0.1-security"
 	},
